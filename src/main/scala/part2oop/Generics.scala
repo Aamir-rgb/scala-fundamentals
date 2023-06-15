@@ -13,19 +13,31 @@ object Generics extends App {
   //var listOfObject = new MyList[listOfIntegers] will throw error
   //Variance Problem A
 
-  //Generic Methods
+  //Using static for Java
+  //Note for defining generic type of methods
   object MyList {
-    def empty[A]:MyList[A] = ???
-  }
-  class Animal
-    class Cat extends Animal
-    class Dog extends Animal
-    class CoVarianceList[+A]
-    //List[cat] extends List[Animal]
-    val animal:Animal = new Cat
-    val animalList:CoVarianceList[Animal] = new CoVarianceList[Cat]
+    def empty[A]: MyList[A] = ???
 
-  //No Invariance
+    val emptyListOfIntegers = MyList.empty[Int]
+  }
+  class MyGenericClass[T] {
+    def process(value: T): Unit = {
+      // ... Implementation of process method ...
+    }
+  }
+  val myObjInstance = new MyGenericClass[Int]()
+  //Need to explore this section
+//  val myObj = new MyGenericClass[myObjInstance[Int]]()
+
+
+//Variance problem
+  class Animal
+  class Cat extends Animal
+  class Dog extends Animal
+ //Three possible solutions for variance problem
+
+ //Covariance List[Cat] extends List[Animal]
+ 
   class InvariantList[A]
   val invariantAnimalList:InvariantList[Animal] = new InvariantList[Animal]
 
