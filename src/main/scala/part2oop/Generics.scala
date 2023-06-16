@@ -1,7 +1,12 @@
 package part2oop
 
 object Generics extends App {
-  class MyList[A] {
+  class MyList[+A] {
+      //def add(element:A): MyList[A] = ???
+      //This error is similar to like we define animal would accept a list of cat
+      //but we are trying to add a list of Dogs
+      //To correct the above error we use
+      def add[B >: A](element:B) : MyList[A] = ???
 
   }
   class MyMap[Key,Value]
@@ -56,4 +61,23 @@ object Generics extends App {
   class Trainer[-A]
   val trainer:Trainer[Cat] = new Trainer[Animal]
 
+
+  //Bounded Types
+
+
+  //Upper Bounded Types
+  //Here <: denotes that class A only accepts type which are subtype of Animal type
+  //Here(animal:A) constructor parameter with A as
+  class Cage[A <: Animal](animal:A)
+
+  val newCage = new Cage(new Dog)
+  //This Line will throw error because Ar is not a type of Animal
+  //val newCage1 = new Cage(new Car)
+
+  //Lower Bounded Types
+  //Here >: denotes that class A only accepts type which are supertype of Animal type
+  class cageRedef[A >: Animal](animal:A)
+
+
 }
+

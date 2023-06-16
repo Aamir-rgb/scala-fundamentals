@@ -1,11 +1,11 @@
 package part2oop
 
-abstract class MyList {
+abstract class MyList[A] {
 
-  def head:Int
-  def tail:MyList
+  def head:A
+  def tail:MyList[A]
   def isEmpty:Boolean
-  def add(element:Int):MyList
+  def add[B >: A](element:B):MyList[B]
   def printElement:String
   override def toString:String = "["+printElement+"]"
 
@@ -18,11 +18,11 @@ object Empty extends MyList {
   def printElement: String = ""
 }
 
-class Cons(h:Int,t:MyList) extends MyList {
-  def head:Int = h
-  def tail:MyList = t
+class Cons[+A](h:A,t:MyList[A]) extends MyList[A] {
+  def head:A = h
+  def tail:MyList[A] = t
   def isEmpty: Boolean = false
-  def add(element:Int):MyList = new Cons(h,t)
+  def add[B >:A](element:B):MyList[B] = new Cons(element,this)
   def printElement: String = if (t.isEmpty) ""+h else  h +" "+t.printElement
 }
 
