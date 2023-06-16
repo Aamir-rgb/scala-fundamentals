@@ -37,13 +37,20 @@ object Generics extends App {
  //Three possible solutions for variance problem
 
  //Covariance List[Cat] extends List[Animal]
- 
+ class CovarianceList[+A]
+ val animal:Animal = new Cat
+ val animalList:CovarianceList[Animal] = new CovarianceList[Cat]
+
+ //Invariant List[Animal] extends List[Animal]
   class InvariantList[A]
   val invariantAnimalList:InvariantList[Animal] = new InvariantList[Animal]
+  //It won't work
+  //val invariantAnimalList1:InvariantList[Animal] = new InvariantList[Cat]
 
-  //Contravariant
-//  class ContravariantList[-A]
-//  val contravariantList:ContravariantList[Cat] = new ContravariantList[Animal]
+
+//Contravariant List
+  class ContravariantList[-A]
+  val contravariantList:ContravariantList[Cat] = new ContravariantList[Animal]
 
   //Contravariant
   class Trainer[-A]
