@@ -1,4 +1,4 @@
-package part2oop
+ package part2oop
 
 object AnonymousClasses extends App {
 
@@ -46,4 +46,6 @@ object AnonymousClasses extends App {
   val studentShyam = new StudentType {
     override def studType = println("Shyam is a post graduate Student")
   }
+
+  println(studentShyam.studType)
 }
