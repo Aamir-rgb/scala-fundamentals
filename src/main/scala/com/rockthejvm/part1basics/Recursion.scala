@@ -45,17 +45,24 @@ object Recursion {
       stringTailrec(n, "")
     }
     //2 Make a fibonacci series using tail recursion
-    def fibonacci(n:Int):Int = {
-      @tailrec
-      def fibonacciTailRec(x:Int,accumulator:Int):Int =
-      var a = 0
-      var b = 1
-      var c = 0
-        c = a+ b
-        if( c > n ) accumulator
-        else fibonacciTailRec(x-1,c+accumulator)
-        fibonacciTailRec(n,0)
+    def fibonacci(n: Int): Int = {
+      def fiboTailrec(i: Int, last: Int, previous: Int): Int =
+        if (i >= n) last
+        else fiboTailrec(i + 1, last + previous, last)
+
+      if (n <= 2) 1
+      else fiboTailrec(2, 1, 1)
     }
+
+  // 3 - yes, rephrasing:
+  def isPrime(n: Int): Boolean = {
+    def isPrimeUntil(t: Int): Boolean =
+      if (t <= 1) true
+      else if (n % t == 0) false
+      else isPrimeUntil(t - 1)
+
+    isPrimeUntil(n / 2)
+  }
 
 
 
