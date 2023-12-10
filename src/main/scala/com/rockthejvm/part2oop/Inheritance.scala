@@ -34,11 +34,19 @@ object Inheritance {
       println("mmmm I like this bone")
     }
 
+    override def toString():String = "a dog"
+
   }
+
+  val dog1:Animal = new Dog()
+
 
   def main(args: Array[String]): Unit = {
     val cat: Cat = new Cat()
+    val dog2:Dog = new Dog()
     cat.eat()
     cat.crunch()
+    println(dog2.toString())
+    println(dog1.eat())
   }
 }
